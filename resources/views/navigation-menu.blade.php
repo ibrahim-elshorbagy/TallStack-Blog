@@ -1,6 +1,6 @@
 <nav class="flex items-center justify-between px-6 py-3 border-b border-gray-100">
     <div id="nav-left" class="flex items-center">
-          <a href="">
+          <a wire:navigate href="">
             <x-application-mark></x-application-mark>
         </a>
         <div class="ml-10 top-menu">
@@ -9,7 +9,9 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
-
+                    <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
+                        {{ __('Blog') }}
+                    </x-nav-link>
             </div>
         </div>
     </div>
