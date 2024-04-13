@@ -38,14 +38,14 @@ class PostResource extends Resource
             ->schema([
                 Section::make('Main Content')
                     ->schema([
-                TextInput::make('title')->required()->maxLength(150)->minLength(1)->live()->debounce(3000)
+                TextInput::make('title')->required()->maxLength(150)->minLength(1)->live(onBlur:true)
                 ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-        if (($get('slug') ?? '') !== Str::slug($old)) {
-            return;
-        }
+                    if (($get('slug') ?? '') !== Str::slug($old)) {
+                        return;
+                    }
 
-        $set('slug', Str::slug($state));
-    }),
+                    $set('slug', Str::slug($state));
+                }),
 
                 TextInput::make('slug')->required()->unique(ignoreRecord:true)->maxLength(150)->minLength(1),
                 RichEditor::make('body')->required()->columnSpanFull()
