@@ -47,6 +47,11 @@ class Post extends Model
         ];
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+
     public function likes(){
         return $this->belongsToMany(User::class,"post_like")->withTimestamps();
     }
@@ -82,7 +87,6 @@ class Post extends Model
                 $query->where('slug', $category);
             });
         }
-
     public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, 'http');
