@@ -38,7 +38,7 @@ class PostResource extends Resource
             ->schema([
                 Section::make('Main Content')
                     ->schema([
-                TextInput::make('title')->required()->maxLength(150)->minLength(1)->live()->debounce(5000)
+                TextInput::make('title')->required()->maxLength(150)->minLength(1)->live()->debounce(3000)
                 ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
         if (($get('slug') ?? '') !== Str::slug($old)) {
             return;
@@ -56,7 +56,7 @@ class PostResource extends Resource
                             FileUpload::make('image')->image()->directory('posts/thumbnails'),
                             DateTimePicker::make('published_at')->nullable(),
                             Checkbox::make('featured'),
-                            Select::make('author')->relationship('author','name')->searchable()->required(),
+                            Select::make('user_id')->relationship('author','name')->searchable()->required(),
                             Select::make('categories')->relationship('categories','title')->searchable()->multiple()
                     ]),
             ]);
