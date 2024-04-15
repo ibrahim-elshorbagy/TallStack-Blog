@@ -65,6 +65,19 @@ class Post extends Model
         $query->where('featured',true);
     }
 
+    public function scopeSearch($query,$search = ''){
+        $query->where('title', 'like', "%{$search}%");
+    }
+
+    public function scopePopular($query){
+        $query->withCount('likes')->orderBy('likes_count','desc');
+    }
+
+    public function scopeWithCategory($querey,string $category){
+            $querey->whereHas('categories', function ($query) use($category){
+                $query->where('slug', $category);
+            });
+        }
 
     //============= Blog page ==========================
         public function getExcerpt(){
@@ -76,17 +89,7 @@ class Post extends Model
         return ($mins < 1) ? 1:$mins;
     }
 
-
-
-
-
-
-
-        public function scopeWithCategory($querey,string $category){
-            $querey->whereHas('categories', function ($query) use($category){
-                $query->where('slug', $category);
-            });
-        }
+    
     public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, 'http');
