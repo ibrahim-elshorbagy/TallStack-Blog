@@ -9,7 +9,7 @@ use Flowframe\Trend\TrendValue;
 
 class PostsPerMonthChart extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    protected static ?string $heading = 'Number Of Posts Per Month';
 
     protected int | string | array $columnSpan = 'full';
 

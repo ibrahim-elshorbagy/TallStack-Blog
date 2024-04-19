@@ -20,6 +20,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Resources\UserResource\Widgets\UserStatsWidget;
 use App\Filament\Resources\PostResource\Widgets\PostsPerMonthChart;
 use App\Filament\Resources\CommentResource\Widgets\LatestCommentsWidget;
+use App\Filament\Resources\PostResource\Widgets\PopularPosts;
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -41,7 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 UserStatsWidget::class,
                 PostsPerMonthChart::class,
-                LatestCommentsWidget::class
+                LatestCommentsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -56,6 +58,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->SPA();
     }
 }

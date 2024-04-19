@@ -49,7 +49,7 @@ class PostList extends Component
             ->with('author','categories')
             ->when($this->activeCategory, function ($query) {$query->withCategory($this->category);})
             ->when($this->popular,function($query){$query->popular();})
-            ->search($this->search)
+            ->when($this->activeSearch,function($query){$query->Search($this->search);})
             ->orderBy('published_at', $this->sort)
             ->paginate(5);
     }
@@ -57,10 +57,19 @@ class PostList extends Component
     #[Computed()]
     public function activeCategory()
     {
-        if($this->category ===null || $this->category ==="")
+        if($this->category === null || $this->category === "")
         {return null;}
         return Category::where('slug', $this->category)->first();
     }
+
+    #[Computed()]
+    public function activeSearch()
+    {
+        if($this->search === null || $this->search === "")
+        {return null;}
+        return Post::where('title', 'like', "%{$this->search}%")->first();
+    }
+
     public function render()
     {
         return view('livewire.post-list', [

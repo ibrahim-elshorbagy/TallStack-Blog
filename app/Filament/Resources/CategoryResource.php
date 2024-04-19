@@ -34,7 +34,7 @@ class CategoryResource extends Resource
                     }
                     $set('slug',Str::slug($state));
                 }),
-                TextInput::make('slug')->required()->unique(ignoreRecord:true)->maxLength(150)->minLength(1),
+                TextInput::make('slug')->required()->unique(ignoreRecord:true)->maxLength(150)->minLength(1)->disabled()->dehydrated(),
                 TextInput::make('text_color')->nullable(),
                 TextInput::make('bg_color')->nullable(),
             ]);

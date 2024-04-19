@@ -73,8 +73,8 @@ class Post extends Model
         $query->withCount('likes')->orderBy('likes_count','desc');
     }
 
-    public function scopeWithCategory($querey,string $category){
-            $querey->whereHas('categories', function ($query) use($category){
+    public function scopeWithCategory($query,string $category){
+            $query->whereHas('categories', function ($query) use($category){
                 $query->where('slug', $category);
             });
         }
@@ -89,7 +89,7 @@ class Post extends Model
         return ($mins < 1) ? 1:$mins;
     }
 
-    
+
     public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, 'http');

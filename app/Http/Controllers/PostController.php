@@ -20,6 +20,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $post->increment('visit_count');
         return view('posts.show',
         [
             'post' => $post

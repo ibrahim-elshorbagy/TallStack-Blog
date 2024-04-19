@@ -48,7 +48,7 @@ class PostResource extends Resource
                     $set('slug', Str::slug($state));
                 }),
 
-                TextInput::make('slug')->required()->unique(ignoreRecord:true)->maxLength(150)->minLength(1),
+                TextInput::make('slug')->required()->unique(ignoreRecord:true)->maxLength(150)->minLength(1)->disabled()->dehydrated(),
                 RichEditor::make('body')->required()->columnSpanFull()
                 ->fileAttachmentsDirectory('posts/images'),
                     ])->columns(2),
@@ -57,8 +57,8 @@ class PostResource extends Resource
                             FileUpload::make('image')->image()->directory('posts/thumbnails'),
                             DateTimePicker::make('published_at')->nullable(),
                             Checkbox::make('featured'),
-                            Select::make('user_id')->relationship('author','name')->searchable()->required(),
-                            Select::make('categories')->relationship('categories','title')->searchable()->multiple()
+                            Select::make('user_id')->relationship('author','name')->searchable()->required()->preload(),
+                            Select::make('categories')->relationship('categories','title')->searchable()->multiple()->preload(),
                     ]),
             ]);
     }
@@ -69,6 +69,7 @@ class PostResource extends Resource
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('title')->searchable()->sortable(),
+                TextColumn::make('visit_count')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable()->sortable(),
                 TextColumn::make('author.name')->searchable()->sortable(),
                 TextColumn::make('published_at')->date('Y-m-d')->searchable()->sortable(),
