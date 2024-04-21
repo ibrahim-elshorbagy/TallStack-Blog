@@ -1,10 +1,6 @@
   <div class="relative flex ml-3">
 
-      @can('view-admin', App\Models\User::class)
-          <x-nav-link :navigate='false' href="{{ route('filament.admin.auth.login') }}" :active="request()->routeIs('filament.admin.auth.login')">
-              {{ __('Admin') }}
-          </x-nav-link>
-      @endcan
+
       <x-dropdown align="right" width="48">
           <x-slot name="trigger">
               @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -33,6 +29,12 @@
               <div class="block px-4 py-2 text-xs text-gray-400">
                   {{ __('Manage Account') }}
               </div>
+              
+              @can('view-admin', App\Models\User::class)
+              <x-dropdown-link :navigate='false' href="{{ route('filament.admin.auth.login') }}" :active="request()->routeIs('filament.admin.auth.login')">
+                  {{ __('Dashboard') }}
+              </x-dropdown-link>
+                @endcan
 
               <x-dropdown-link wire:navigate href="{{ route('profile.show') }}">
                   {{ __('Profile') }}
@@ -45,6 +47,8 @@
               @endif
 
               <div class="border-t border-gray-200"></div>
+
+
 
               <!-- Authentication -->
               <form method="POST" action="{{ route('logout') }}" x-data>

@@ -21,7 +21,9 @@ use App\Filament\Resources\UserResource\Widgets\UserStatsWidget;
 use App\Filament\Resources\PostResource\Widgets\PostsPerMonthChart;
 use App\Filament\Resources\CommentResource\Widgets\LatestCommentsWidget;
 use App\Filament\Resources\PostResource\Widgets\PopularPosts;
-
+use Filament\Facades\Filament;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\UserMenuItem;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -60,5 +62,20 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->SPA();
+
     }
+
+    public function boot(): void
+    {
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                MenuItem::make()
+                    ->label('Return To HomePage')
+                    ->url(route('home'))
+                    ->icon('heroicon-s-home')
+                    //add reload function
+            ]);
+        });
+    }
+
 }

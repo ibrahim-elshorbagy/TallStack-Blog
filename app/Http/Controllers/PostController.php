@@ -14,13 +14,13 @@ class PostController extends Controller
         [
             'categories' => Category::whereHas('posts', function ($query) {
                     $query->Published();
-                })->take(10)->get()
+                })->take(5)->get()
         ]);
     }
 
     public function show(Post $post)
     {
-        $post->increment('visit_count');
+
         return view('posts.show',
         [
             'post' => $post
