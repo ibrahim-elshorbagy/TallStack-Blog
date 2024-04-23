@@ -22,8 +22,8 @@ class PostSeeder extends Seeder
 
                 'user_id' => 1,
                 'image' => 'https://via.placeholder.com/640x480.png/00ff00?text=Laravel Introduction',
-                'title' => 'Introduction to Laravel Development',
-                'slug' => 'introduction-to-laravel-development',
+                'title' => 'Introduction to Laravel',
+                'slug' => 'introduction-to-laravel',
                 'published_at' => $faker->dateTimeBetween('-1 year', 'now'),
                 'body' => 'In this post, we will explore the basics of Laravel development and its core features. We will delve into topics such as routing, controllers, models, views, migrations, and more. By the end of this tutorial, you will have a solid understanding of how to build web applications using the Laravel framework.',
                 'featured' => 1,

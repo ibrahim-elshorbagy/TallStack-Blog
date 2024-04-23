@@ -1,6 +1,7 @@
 @props(['post'])
 <article
-{{ $attributes->merge(['class' => '[&:not(:last-child)]:border-b border-gray-100 pb-10']) }}>
+{{ $attributes->merge(['class' => ' [&:not(:last-child)]:border-b border-gray-100 pb-10']) }}>
+
 <div class="grid items-start grid-cols-12 gap-3 mt-5 article-body">
     <div class="flex items-center col-span-12 md:col-span-4 article-thumbnail">
         <a wire:navigate href="{{route('posts.show',$post->slug)}}">
@@ -10,7 +11,7 @@
         <div class="col-span-8">
             <div class="flex items-center py-1 text-sm article-meta">
                 <x-posts.author :author="$post->author" size="md" />
-                <span class="text-xs text-gray-500">. {{ $post->published_at->diffForHumans() }}</span>
+                <span class="text-xs text-gray-500">. {{ $post->published_at->format('d M Y') }}</span>
             </div>
             <h2 class="text-xl font-bold text-gray-900">
                 <a wire:navigate href="{{route('posts.show',$post->slug)}}">

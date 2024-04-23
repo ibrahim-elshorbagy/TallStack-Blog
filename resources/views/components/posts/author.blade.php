@@ -19,6 +19,7 @@
     };
 
 @endphp
-
+<div class="flex items-center">
 <img class="mr-3 rounded-full {{ $imageSize }}" src="{{ $author->profile_photo_url }}" alt="{{ $author->name }}">
 <span class="mr-1 {{ $textSize }}">{{ $author->name }} </span>
+</div>

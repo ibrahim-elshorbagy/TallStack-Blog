@@ -1,4 +1,4 @@
-<div class="px-3 py-6 lg:px-7">
+<div class="container  px-3 py-6 lg:px-7">
     <div class="flex items-center flex-wrap justify-between border-b border-gray-100">
         <div class="flex text-gray-600">
 
@@ -32,7 +32,7 @@
                 wire:click="setSort('asc')">Oldest</button>
         </div>
     </div>
-    <div class="py-4">
+    <div class=" py-4">
         @foreach ($this->posts as $post)
             <x-posts.post-item wire:key="{{$post->id}}" :post="$post" />
         @endforeach

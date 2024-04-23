@@ -80,8 +80,8 @@ class Post extends Model
         }
 
     //============= Blog page ==========================
-        public function getExcerpt(){
-        return Str::limit(strip_tags($this->body),50);
+        public function getExcerpt($num = 150){
+        return Str::limit(strip_tags($this->body),$num);
     }
 
     public function getReadingTime(){

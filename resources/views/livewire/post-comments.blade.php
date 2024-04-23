@@ -16,7 +16,7 @@
             <div class="comment [&:not(:last-child)]:border-b border-gray-100 py-5">
                 <div class="flex items-center mb-4 text-sm user-meta">
                     <x-posts.author :author="$comment->user" size="sm" />
-                    <span class="text-gray-500">. {{ $comment->created_at->diffForHumans() }}</span>
+                    <span class="text-gray-500">. {{ $post->published_at->format('d M Y') }}</span>
                 </div>
                 <div class="text-sm text-justify text-gray-700">
                     {{ $comment->comment }}

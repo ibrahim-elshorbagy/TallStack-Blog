@@ -14,11 +14,12 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-        
+
 
         return view('home', [
             'featuredPosts' => Post::published()->featured()->with('categories')->latest('published_at')->take(3)->get() ,
-            'latestPosts' =>Post::published()->with('categories')->latest('published_at')->take(9)->get()
+            'FourFeaturedPosts' => Post::published()->featured()->with('categories')->latest('published_at')->take(4)->get() ,
+            'latestPosts' =>Post::published()->with('categories')->latest('published_at')->take(6)->get()
         ]);
     }
 }
