@@ -27,7 +27,7 @@
 
 
 
-  <summary>Installation</summary>
+ ## Installation
 
   This blog is built with Laravel and Filament. Here's how to set it up:
 
