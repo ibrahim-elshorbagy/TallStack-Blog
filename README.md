@@ -25,7 +25,15 @@
 - Logout Section
 - Admin Section to Manage Posts, Comments, Categories, Users
 
+![File Structure](Readme/images/blog-1.png)
 
+![File Structure](Readme/images/Blog.png)
+
+![File Structure](Readme/images/blog2.png)
+
+![File Structure](Readme/images/search.png)
+
+![File Structure](Readme/images/dash.png)
 
  ## Installation
 
